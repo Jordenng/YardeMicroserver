@@ -27,7 +27,6 @@ class Client:
             if post_response == 200:
                 requests.get("https://facebook.com")
 
-    # assignment 4 #
     def response_status(self):
         request1 = requests.get("https://google.com")
         request2 = requests.get("https://apple.com")
