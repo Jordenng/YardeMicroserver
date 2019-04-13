@@ -1,7 +1,7 @@
 # Yardens Microserver
-My Microserver Project
+My Microserver Side Project
 
-created a microserver with a Client and Server class,  each has diffrent features.
+Created a microserver with a Client and Server class,  each has diffrent features.
 
 ## Installations
 Install requests module 
