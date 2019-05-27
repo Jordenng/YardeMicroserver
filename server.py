@@ -1,34 +1,32 @@
-#!/usr/bin/python
-from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-
-PORT_NUMBER = 8080
-
-
-# This class will handles any incoming request from
-# the browser
-class myHandler(BaseHTTPRequestHandler):
-
-    # Handler for the GET requests
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/html')
-        self.end_headers()
-        # Send the html message
-        self.wfile.write("Hello World !")
-        return
+import socket
+print("hi")
+import requests
+import time
 
 
-try:
-    # Create a web server and define the handler to manage the
-    # incoming request
-    server = HTTPServer(('', PORT_NUMBER), myHandler)
-    print
-    'Started httpserver on port ', PORT_NUMBER
+class Server:
+        print("starting_server")
+        HOST = "0.0.0.0"
+        PORT = 8888
+        print('hello')
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+        s.bind((HOST, PORT))  # standard format for IPv4
+        s.listen()  # enabling the server to accept connection
+        connection, address = s.accept()  # returns connection and address from client
+        print('hello')
+        while True:
+                data = connection.recv(1024)
+                if not data:
+                        break
+                connection.sendall(data)  # sending data received from client
 
-    # Wait forever for incoming htto requests
-    server.serve_forever()
+        def get_request(self):
+                url = "https://stackoverflow.com/"
+                return requests.get(url)
 
-except KeyboardInterrupt:
-    print
-    '^C received, shutting down the web server'
-    server.socket.close()
+        def post_with_delay(self):
+                post_request = requests.post("https://stackoverflow.com", {'key':"value"}, time.sleep(0.1))
+                time.sleep(1)
+                return post_request
+#         print('hello')
